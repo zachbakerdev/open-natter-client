@@ -1,5 +1,9 @@
 {
     "editor.formatOnSave": true,
     "eslint.codeActionsOnSave.mode": "all",
-    "eslint.codeActionsOnSave.rules": []
+    "eslint.codeActionsOnSave.rules": [],
+    "editor.formatOnSaveMode": "file",
+    "editor.codeActionsOnSave": {
+        "source.organizeImports": "always"
+    }
 }
