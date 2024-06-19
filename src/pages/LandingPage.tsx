@@ -1,12 +1,16 @@
-import { Container, Typography } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import { FC } from "react";
 import strings from "../strings";
 
 const LandingPage: FC = () => {
     return (
-        <Container>
-            <Typography variant="h1">{strings.title}</Typography>
-        </Container>
+        <Box
+            style={{
+                width: "100%"
+            }}
+        >
+            <Typography variant="h4">{strings.title}</Typography>
+        </Box>
     );
 };
 
