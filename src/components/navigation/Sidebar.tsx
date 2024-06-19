@@ -7,10 +7,8 @@ const Sidebar: FC = () => {
         <Paper
             variant="outlined"
             style={{
-                width: "20%",
+                width: "80px",
                 height: "100vh",
-                minWidth: "80px",
-                maxWidth: "80px",
                 padding: "15px",
                 alignItems: "center"
             }}
@@ -19,8 +17,8 @@ const Sidebar: FC = () => {
                 display="flex"
                 alignItems="center"
                 alignContent="center"
-                width="48px"
-                height="48px"
+                width="50px"
+                height="50px"
                 style={{
                     backgroundColor: "#303030",
                     borderRadius: "10px"
