@@ -1,11 +1,11 @@
-import { ThemeProvider } from "@emotion/react";
-import { createTheme } from "@mui/material";
+import { Box, CssBaseline, ThemeProvider, createTheme } from "@mui/material";
+import Sidebar from "components/navigation/Sidebar";
 import { FC } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
 import LandingPage from "./pages/LandingPage";
 
-const darkTheme = createTheme({
+const theme = createTheme({
     palette: {
         mode: "dark"
     }
@@ -13,14 +13,28 @@ const darkTheme = createTheme({
 
 const App: FC = () => {
     return (
-        <ThemeProvider theme={darkTheme}>
-            <BrowserRouter>
-                <Routes>
-                    <Route path="/">
-                        <Route index Component={LandingPage} />
-                    </Route>
-                </Routes>
-            </BrowserRouter>
+        <ThemeProvider theme={theme}>
+            <CssBaseline />
+            <Box
+                style={{
+                    display: "flex"
+                }}
+            >
+                <Sidebar />
+                <Box
+                    style={{
+                        padding: "15px"
+                    }}
+                >
+                    <BrowserRouter>
+                        <Routes>
+                            <Route path="/">
+                                <Route index Component={LandingPage} />
+                            </Route>
+                        </Routes>
+                    </BrowserRouter>
+                </Box>
+            </Box>
         </ThemeProvider>
     );
 };
