@@ -3,7 +3,7 @@ const strings = {
     error_404_title: "Error 404",
     error_404: "Page Not Found",
     goHome: "Click here to go home.",
-    login: "Sign In",
+    login: "Log In",
     rememberMe: "Remember me?",
     forgotPassword: "Forgot password?",
     noAccount: "Don't have an account? Register!"
