@@ -14,6 +14,7 @@ const App: FC = () => {
             <ScreenBoundingBox>
                 <Routes>
                     <Route path="/@/*" Component={Sidebar} />
+                    <Route path="*" element={null} />
                 </Routes>
                 <PageBoundingBox>
                     <Routes>
