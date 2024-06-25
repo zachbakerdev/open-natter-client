@@ -151,6 +151,9 @@ const RegisterPage: FC = () => {
                     fullWidth
                     variant="contained"
                     sx={{ mt: 3, mb: 2 }}
+                    disabled={
+                        !isUsernameValid || !isEmailValid || !isPasswordValid
+                    }
                 >
                     {strings.register}
                 </Button>
