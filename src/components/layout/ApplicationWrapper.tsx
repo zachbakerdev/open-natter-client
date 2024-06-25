@@ -1,5 +1,6 @@
 import { ThemeProvider } from "@emotion/react";
 import { CssBaseline, createTheme } from "@mui/material";
+import Authorizer from "components/navigation/Authorizer";
 import AuthenticationContext, {
     AuthContextData
 } from "contexts/AuthenticationContext";
@@ -30,7 +31,10 @@ const ApplicationWrapper: FC<PropsWithChildren> = ({ children }) => {
         <AuthenticationContext.Provider value={contextData}>
             <ThemeProvider theme={theme}>
                 <CssBaseline />
-                <BrowserRouter>{children}</BrowserRouter>
+                <BrowserRouter>
+                    <Authorizer />
+                    {children}
+                </BrowserRouter>
             </ThemeProvider>
         </AuthenticationContext.Provider>
     );
