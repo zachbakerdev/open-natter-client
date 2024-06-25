@@ -10,8 +10,19 @@ import {
 import InternalLink from "components/navigation/InternalLink";
 import AuthenticationContext from "contexts/AuthenticationContext";
 import useTitle from "hooks/useTitle";
-import { FC, FormEventHandler, useContext, useState } from "react";
+import { FC, FormEventHandler, useContext, useEffect, useState } from "react";
 import strings from "strings";
+
+const USERNAME_REGEX = /^[A-Za-z]\w{1,28}[A-Za-z0-9]$/;
+const EMAIL_REGEX =
+    /^[-!#$%&'*+/0-9=?A-Z^_a-z{|}~](\.?[-!#$%&'*+/0-9=?A-Z^_a-z`{|}~])*@[a-zA-Z0-9](-*\.?[a-zA-Z0-9])*\.[a-zA-Z](-?[a-zA-Z0-9])+$/;
+const PASSWORD_LOWERCASE = /^.*[a-z].*$/;
+const PASSWORD_UPPERCASE = /^.*[A-Z].*$/;
+const PASSWORD_NUMBER = /^.*\d.*$/;
+const PASSWORD_SPECIAL_CHARACTER =
+    /^.*[ !"#$%&'()*+,-./:;<=>?@[\\\]^_`{|}~].*$/;
+const PASSWORD_COMPLETE =
+    /^[ !"#$%&'()*+,-./:;<=>?@[\\\]^_`{|}~A-Za-z0-9]{8,}$/;
 
 const RegisterPage: FC = () => {
     useTitle("Register");
@@ -19,6 +30,26 @@ const RegisterPage: FC = () => {
     const [username, setUsername] = useState<string>("");
     const [email, setEmail] = useState<string>("");
     const [password, setPassword] = useState<string>("");
+
+    const [isUsernameValid, setIsUsernameValid] = useState<boolean>(false);
+    const [isEmailValid, setIsEmailValid] = useState<boolean>(false);
+    const [isPasswordValid, setIsPasswordValid] = useState<boolean>(false);
+
+    useEffect(() => {
+        setIsUsernameValid(USERNAME_REGEX.test(username));
+    }, [username]);
+    useEffect(() => {
+        setIsEmailValid(EMAIL_REGEX.test(email));
+    }, [email]);
+    useEffect(() => {
+        let valid = true;
+        if (!PASSWORD_LOWERCASE.test(password)) valid = false;
+        if (!PASSWORD_UPPERCASE.test(password)) valid = false;
+        if (!PASSWORD_NUMBER.test(password)) valid = false;
+        if (!PASSWORD_SPECIAL_CHARACTER.test(password)) valid = false;
+        if (!PASSWORD_COMPLETE.test(password)) valid = false;
+        setIsPasswordValid(valid);
+    }, [password]);
 
     const authContext = useContext(AuthenticationContext);
 
@@ -37,34 +68,55 @@ const RegisterPage: FC = () => {
             <Typography component="h1" variant="h5">
                 {strings.register}
             </Typography>
-            <Box component="form" onSubmit={handleSubmit}>
+            <Box
+                component="form"
+                onSubmit={handleSubmit}
+                style={{
+                    minWidth: "300px",
+                    maxWidth: "800px",
+                    width: "85%"
+                }}
+            >
                 <TextField
+                    fullWidth
                     margin="normal"
                     required
-                    fullWidth
-                    id="text"
+                    id="username"
                     label="Username"
-                    name="text"
+                    name="username"
                     autoComplete="username"
                     autoFocus
                     value={username}
                     onChange={(e) => setUsername(e.target.value)}
+                    error={!isUsernameValid && username.length > 0}
+                    helperText={
+                        !isUsernameValid &&
+                        username.length > 0 &&
+                        strings.usernameRequirements
+                    }
                 />
                 <TextField
+                    fullWidth
                     margin="normal"
                     required
-                    fullWidth
+                    type="email"
                     id="email"
                     label="Email Address"
                     name="email"
                     autoComplete="email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
+                    error={!isEmailValid && email.length > 0}
+                    helperText={
+                        !isEmailValid &&
+                        email.length > 0 &&
+                        strings.emailRequirements
+                    }
                 />
                 <TextField
+                    fullWidth
                     margin="normal"
                     required
-                    fullWidth
                     name="password"
                     label="Password"
                     type="password"
@@ -72,6 +124,12 @@ const RegisterPage: FC = () => {
                     autoComplete="current-password"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
+                    error={!isPasswordValid && password.length > 0}
+                    helperText={
+                        !isPasswordValid &&
+                        password.length > 0 &&
+                        strings.passwordRequirements
+                    }
                 />
                 <FormControlLabel
                     control={
