@@ -4,8 +4,10 @@ import { FC, PropsWithChildren } from "react";
 const PageBoundingBox: FC<PropsWithChildren> = ({ children }) => {
     return (
         <Box
-            style={{
-                padding: "15px"
+            sx={{
+                padding: "15px",
+                height: "100%",
+                width: "100%"
             }}
         >
             {children}

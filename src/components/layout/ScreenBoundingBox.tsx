@@ -4,8 +4,10 @@ import { FC, PropsWithChildren } from "react";
 const ScreenBoundingBox: FC<PropsWithChildren> = ({ children }) => {
     return (
         <Box
-            style={{
-                display: "flex"
+            sx={{
+                display: "flex",
+                width: "100%",
+                height: "100vh"
             }}
         >
             {children}
