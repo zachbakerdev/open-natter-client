@@ -17,6 +17,7 @@ const Error404: FC = () => {
                 gap: "10px"
             }}
         >
+            <Typography variant="h1">{strings.error_404_title}</Typography>
             <Typography variant="h4">{strings.error_404}</Typography>
             <InternalLink to={isAtUrl ? "/@/" : "/"}>
                 {strings.goHome}
