@@ -9,10 +9,13 @@ import {
 } from "@mui/material";
 import InternalLink from "components/navigation/InternalLink";
 import AuthenticationContext from "contexts/AuthenticationContext";
+import useTitle from "hooks/useTitle";
 import { FC, FormEventHandler, useContext, useState } from "react";
 import strings from "strings";
 
 const LoginPage: FC = () => {
+    useTitle("Login");
+
     const [username, setUsername] = useState<string>("");
     const [password, setPassword] = useState<string>("");
 
