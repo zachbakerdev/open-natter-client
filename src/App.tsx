@@ -2,7 +2,7 @@ import ApplicationWrapper from "components/layout/ApplicationWrapper";
 import PageBoundingBox from "components/layout/PageBoundingBox";
 import ScreenBoundingBox from "components/layout/ScreenBoundingBox";
 import Sidebar from "components/navigation/Sidebar";
-import LandingPage from "pages/LandingPage";
+import Error404 from "pages/Error404";
 import { FC } from "react";
 import { Route, Routes } from "react-router-dom";
 import "./App.css";
@@ -16,7 +16,7 @@ const App: FC = () => {
                 </Routes>
                 <PageBoundingBox>
                     <Routes>
-                        <Route path="*" Component={LandingPage} />
+                        <Route path="*" Component={Error404} />
                     </Routes>
                 </PageBoundingBox>
             </ScreenBoundingBox>
