@@ -1,41 +1,26 @@
-import { Box, CssBaseline, ThemeProvider, createTheme } from "@mui/material";
+import ApplicationWrapper from "components/layout/ApplicationWrapper";
+import PageBoundingBox from "components/layout/PageBoundingBox";
+import ScreenBoundingBox from "components/layout/ScreenBoundingBox";
 import Sidebar from "components/navigation/Sidebar";
+import LandingPage from "pages/LandingPage";
 import { FC } from "react";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import "./App.css";
-import LandingPage from "./pages/LandingPage";
-
-const theme = createTheme({
-    palette: {
-        mode: "dark"
-    }
-});
 
 const App: FC = () => {
     return (
-        <ThemeProvider theme={theme}>
-            <CssBaseline />
-            <Box
-                style={{
-                    display: "flex"
-                }}
-            >
-                <Sidebar />
-                <Box
-                    style={{
-                        padding: "15px"
-                    }}
-                >
-                    <BrowserRouter>
-                        <Routes>
-                            <Route path="/">
-                                <Route index Component={LandingPage} />
-                            </Route>
-                        </Routes>
-                    </BrowserRouter>
-                </Box>
-            </Box>
-        </ThemeProvider>
+        <ApplicationWrapper>
+            <ScreenBoundingBox>
+                <Routes>
+                    <Route path="/@/*" Component={Sidebar} />
+                </Routes>
+                <PageBoundingBox>
+                    <Routes>
+                        <Route path="*" Component={LandingPage} />
+                    </Routes>
+                </PageBoundingBox>
+            </ScreenBoundingBox>
+        </ApplicationWrapper>
     );
 };
 
