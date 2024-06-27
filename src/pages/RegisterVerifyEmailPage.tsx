@@ -15,7 +15,7 @@ const inputBoxStyle = {
     textAlign: "center"
 };
 
-const VerifyEmailPage: FC = () => {
+const RegisterVerifyEmailPage: FC = () => {
     const [loading, setLoading] = useState<boolean>(false);
     const [errorText, setErrorText] = useState<string>("");
     const [verification, setVerification] = useState<string | null | undefined>(
@@ -311,4 +311,4 @@ const VerifyEmailPage: FC = () => {
     );
 };
 
-export default VerifyEmailPage;
+export default RegisterVerifyEmailPage;

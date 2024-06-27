@@ -5,7 +5,7 @@ import Sidebar from "components/navigation/Sidebar";
 import Error404 from "pages/Error404";
 import LoginPage from "pages/LoginPage";
 import RegisterPage from "pages/RegisterPage";
-import VerifyEmailPage from "pages/VerifyEmailPage";
+import RegisterVerifyEmailPage from "pages/RegisterVerifyEmailPage";
 import { FC } from "react";
 import { Route, Routes } from "react-router-dom";
 import "./App.css";
@@ -25,7 +25,10 @@ const App: FC = () => {
                         </Route>
                         <Route path="register">
                             <Route index Component={RegisterPage} />
-                            <Route path="verify" Component={VerifyEmailPage} />
+                            <Route
+                                path="verify"
+                                Component={RegisterVerifyEmailPage}
+                            />
                         </Route>
                         <Route path="*" Component={Error404} />
                     </Routes>
