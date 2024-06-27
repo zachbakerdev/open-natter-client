@@ -5,6 +5,7 @@ import Sidebar from "components/navigation/Sidebar";
 import Error404 from "pages/Error404";
 import LoginPage from "pages/LoginPage";
 import RegisterPage from "pages/RegisterPage";
+import VerifyEmailPage from "pages/VerifyEmailPage";
 import { FC } from "react";
 import { Route, Routes } from "react-router-dom";
 import "./App.css";
@@ -19,11 +20,12 @@ const App: FC = () => {
                 </Routes>
                 <PageBoundingBox>
                     <Routes>
-                        <Route path="/login">
+                        <Route path="login">
                             <Route index Component={LoginPage} />
                         </Route>
-                        <Route path="/register">
+                        <Route path="register">
                             <Route index Component={RegisterPage} />
+                            <Route path="verify" Component={VerifyEmailPage} />
                         </Route>
                         <Route path="*" Component={Error404} />
                     </Routes>

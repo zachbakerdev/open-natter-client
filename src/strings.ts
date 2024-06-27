@@ -14,7 +14,9 @@ const strings = {
     emailRequirements: "Must be a valid email.",
     passwordRequirements:
         "Must contain a capital letter, lowercase letter, number, special character, and be at least 8 characters long.",
-    invalidResponse: "The server sent an invalid response."
+    invalidResponse: "The server sent an invalid response.",
+    verifyEmail: "Verification Code",
+    submit: "Submit"
 };
 
 export default strings;
