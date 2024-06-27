@@ -19,7 +19,7 @@ const Authorizer: FC = () => {
                 navigate("/login");
             }
         }
-    }, [authContext.expired]);
+    }, [authContext.expired, location.pathname]);
 
     return null;
 };
