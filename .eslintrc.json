@@ -91,6 +91,9 @@
             {
                 "functions": "ignore"
             }
+        ],
+        "no-fallthrough": [
+            "off"
         ]
     }
 }

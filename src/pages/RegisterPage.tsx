@@ -11,6 +11,7 @@ import InternalLink from "components/navigation/InternalLink";
 import AuthenticationContext from "contexts/AuthenticationContext";
 import useTitle from "hooks/useTitle";
 import { FC, FormEventHandler, useContext, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import strings from "strings";
 
 const USERNAME_REGEX = /^[A-Za-z]\w{1,28}[A-Za-z0-9]$/;
@@ -26,6 +27,11 @@ const PASSWORD_COMPLETE =
 
 const RegisterPage: FC = () => {
     useTitle("Register");
+
+    const navigate = useNavigate();
+
+    const [errorText, setErrorText] = useState<string>("");
+    const [loading, setLoading] = useState<boolean>(false);
 
     const [username, setUsername] = useState<string>("");
     const [email, setEmail] = useState<string>("");
@@ -55,6 +61,49 @@ const RegisterPage: FC = () => {
 
     const handleSubmit: FormEventHandler = (e) => {
         e.preventDefault();
+
+        let responseStatus: number;
+
+        setErrorText("");
+        setLoading(true);
+        fetch(`/api/user/register`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                username,
+                email,
+                password
+            })
+        })
+            .then((response) => {
+                responseStatus = response.status;
+                return response.json();
+            })
+            .then((body) => {
+                const { msg, verification } = body;
+
+                switch (responseStatus) {
+                    case 200:
+                        navigate(`./verify?verification=${verification}`);
+                        break;
+                    case 400:
+                    case 403:
+                    case 409:
+                    case 500:
+                        setErrorText(msg);
+                        break;
+                    default:
+                        setErrorText(strings.invalidResponse);
+                }
+            })
+            .catch(() => {
+                setErrorText(strings.invalidResponse);
+            })
+            .finally(() => {
+                setLoading(false);
+            });
     };
 
     return (
@@ -152,7 +201,10 @@ const RegisterPage: FC = () => {
                     variant="contained"
                     sx={{ mt: 3, mb: 2 }}
                     disabled={
-                        !isUsernameValid || !isEmailValid || !isPasswordValid
+                        loading ||
+                        !isUsernameValid ||
+                        !isEmailValid ||
+                        !isPasswordValid
                     }
                 >
                     {strings.register}
@@ -165,6 +217,11 @@ const RegisterPage: FC = () => {
                         </InternalLink>
                     </Grid>
                 </Grid>
+                {errorText.length > 0 && (
+                    <Typography color="red" variant="body1">
+                        {errorText}
+                    </Typography>
+                )}
             </Box>
         </Box>
     );
