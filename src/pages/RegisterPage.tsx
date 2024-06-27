@@ -1,16 +1,7 @@
-import {
-    Box,
-    Button,
-    Checkbox,
-    FormControlLabel,
-    Grid,
-    TextField,
-    Typography
-} from "@mui/material";
+import { Box, Button, Grid, TextField, Typography } from "@mui/material";
 import InternalLink from "components/navigation/InternalLink";
-import AuthenticationContext from "contexts/AuthenticationContext";
 import useTitle from "hooks/useTitle";
-import { FC, FormEventHandler, useContext, useEffect, useState } from "react";
+import { FC, FormEventHandler, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import strings from "strings";
 
@@ -56,8 +47,6 @@ const RegisterPage: FC = () => {
         if (!PASSWORD_COMPLETE.test(password)) valid = false;
         setIsPasswordValid(valid);
     }, [password]);
-
-    const authContext = useContext(AuthenticationContext);
 
     const handleSubmit: FormEventHandler = (e) => {
         e.preventDefault();
@@ -179,21 +168,6 @@ const RegisterPage: FC = () => {
                         password.length > 0 &&
                         strings.passwordRequirements
                     }
-                />
-                <FormControlLabel
-                    control={
-                        <Checkbox
-                            value="remember"
-                            color="primary"
-                            checked={authContext.remember}
-                            onChange={() => {
-                                authContext.setRemember(
-                                    (previous) => !previous
-                                );
-                            }}
-                        />
-                    }
-                    label={strings.rememberMe}
                 />
                 <Button
                     type="submit"
