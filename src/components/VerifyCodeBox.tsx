@@ -102,11 +102,25 @@ const VerifyCodeBox: FC<VerifyCodeBoxProps> = ({ setCode }) => {
         return null;
     };
 
+    const handlePaste = (code: string): void => {
+        digit6Ref.current!.focus();
+
+        setDigit1(code.charAt(0));
+        setDigit2(code.charAt(1));
+        setDigit3(code.charAt(2));
+        setDigit4(code.charAt(3));
+        setDigit5(code.charAt(4));
+        setDigit6(code.charAt(5));
+    };
+
     const handleUpdate = (digit: number, value: string): void => {
-        if (value.length > 1) return;
+        if (value.length > 1 && value.length !== 6) return;
 
         if (value.length === 1) handleAdd(digit, value);
         else if (value.length === 0) handleSubtract(digit);
+        else if (value.length === 6) {
+            if (digit === 1) handlePaste(value);
+        }
     };
 
     const backIfEmpty = (focused: number): void => {
