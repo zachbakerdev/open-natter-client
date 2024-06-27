@@ -80,7 +80,7 @@ const LoginPage: FC = () => {
                     type="submit"
                     fullWidth
                     variant="contained"
-                    sx={{ mt: 3, mb: 2 }}
+                    sx={{ mt: 2, mb: 2 }}
                 >
                     {strings.login}
                 </Button>
