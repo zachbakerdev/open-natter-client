@@ -36,7 +36,15 @@ const LoginPage: FC = () => {
             <Typography component="h1" variant="h5">
                 {strings.login}
             </Typography>
-            <Box component="form" onSubmit={handleSubmit}>
+            <Box
+                component="form"
+                onSubmit={handleSubmit}
+                style={{
+                    minWidth: "300px",
+                    maxWidth: "800px",
+                    width: "85%"
+                }}
+            >
                 <TextField
                     margin="normal"
                     required
