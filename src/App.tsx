@@ -4,6 +4,7 @@ import ScreenBoundingBox from "components/layout/ScreenBoundingBox";
 import Sidebar from "components/navigation/Sidebar";
 import Error404 from "pages/Error404";
 import LoginPage from "pages/LoginPage";
+import LoginVerifyEmailPage from "pages/LoginVerifyEmailPage";
 import RegisterPage from "pages/RegisterPage";
 import RegisterVerifyEmailPage from "pages/RegisterVerifyEmailPage";
 import { FC } from "react";
@@ -22,6 +23,10 @@ const App: FC = () => {
                     <Routes>
                         <Route path="login">
                             <Route index Component={LoginPage} />
+                            <Route
+                                path="verify"
+                                Component={LoginVerifyEmailPage}
+                            />
                         </Route>
                         <Route path="register">
                             <Route index Component={RegisterPage} />

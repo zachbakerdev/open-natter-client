@@ -63,7 +63,8 @@ const LoginPage: FC = () => {
                         );
                         break;
                     case 403:
-                        if (verification) navigate("./verify");
+                        if (verification)
+                            navigate(`./verify?verification=${verification}`);
                         else setErrorText(msg);
                         break;
                     case 400:

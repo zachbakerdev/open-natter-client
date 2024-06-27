@@ -16,7 +16,9 @@ const strings = {
         "Must contain a capital letter, lowercase letter, number, special character, and be at least 8 characters long.",
     invalidResponse: "The server sent an invalid response.",
     verifyEmail: "Verification Code",
-    submit: "Submit"
+    submit: "Submit",
+    resendEmail: "Resend Verification Email",
+    emailSent: "Email Sent."
 };
 
 export default strings;
