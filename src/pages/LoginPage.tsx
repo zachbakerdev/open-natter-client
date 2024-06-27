@@ -10,19 +10,76 @@ import {
 import InternalLink from "components/navigation/InternalLink";
 import AuthenticationContext from "contexts/AuthenticationContext";
 import useTitle from "hooks/useTitle";
-import { FC, FormEventHandler, useContext, useState } from "react";
+import { FC, FormEventHandler, useContext, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import strings from "strings";
 
 const LoginPage: FC = () => {
     useTitle("Login");
+
+    const navigate = useNavigate();
+
+    const [errorText, setErrorText] = useState<string>("");
+    const [loading, setLoading] = useState<boolean>(false);
 
     const [username, setUsername] = useState<string>("");
     const [password, setPassword] = useState<string>("");
 
     const authContext = useContext(AuthenticationContext);
 
+    useEffect(() => {
+        if (authContext.expired === false) navigate("/@/");
+    }, [authContext.expired]);
+
     const handleSubmit: FormEventHandler = (e) => {
         e.preventDefault();
+
+        let responseStatus: number;
+
+        setErrorText("");
+        setLoading(true);
+        fetch(`/api/user/login`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                username,
+                password
+            })
+        })
+            .then((response) => {
+                responseStatus = response.status;
+                return response.json();
+            })
+            .then((body) => {
+                const { msg, token, verification } = body;
+
+                switch (responseStatus) {
+                    case 200:
+                        authContext.setToken(token);
+                        authContext.setExpiration(
+                            new Date().getTime() + 2592000000
+                        );
+                        break;
+                    case 403:
+                        if (verification) navigate("./verify");
+                        else setErrorText(msg);
+                        break;
+                    case 400:
+                    case 500:
+                        setErrorText(msg);
+                        break;
+                    default:
+                        setErrorText(strings.invalidResponse);
+                }
+            })
+            .catch(() => {
+                setErrorText(strings.invalidResponse);
+            })
+            .finally(() => {
+                setLoading(false);
+            });
     };
 
     return (
@@ -89,6 +146,7 @@ const LoginPage: FC = () => {
                     fullWidth
                     variant="contained"
                     sx={{ mt: 2, mb: 2 }}
+                    disabled={loading || !username || !password}
                 >
                     {strings.login}
                 </Button>
@@ -107,6 +165,17 @@ const LoginPage: FC = () => {
                         </InternalLink>
                     </Grid>
                 </Grid>
+                {errorText.length > 0 && (
+                    <Typography
+                        color="red"
+                        variant="body1"
+                        sx={{
+                            marginTop: 2
+                        }}
+                    >
+                        {errorText}
+                    </Typography>
+                )}
             </Box>
         </Box>
     );
