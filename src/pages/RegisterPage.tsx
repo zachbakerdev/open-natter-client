@@ -75,7 +75,9 @@ const RegisterPage: FC = () => {
 
                 switch (responseStatus) {
                     case 200:
-                        navigate(`./verify?verification=${verification}`);
+                        navigate(
+                            `./verify?verification=${verification}&email=${email}`
+                        );
                         break;
                     case 400:
                     case 403:
