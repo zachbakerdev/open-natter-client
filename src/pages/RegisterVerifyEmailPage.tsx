@@ -241,6 +241,7 @@ const RegisterVerifyEmailPage: FC = () => {
                     value={digit1}
                     onChange={(e) => handleUpdate(1, e.target.value)}
                     autoFocus
+                    autoComplete="off"
                 />
                 <TextField
                     sx={inputBoxStyle}
@@ -248,6 +249,7 @@ const RegisterVerifyEmailPage: FC = () => {
                     inputRef={digit2Ref}
                     value={digit2}
                     onChange={(e) => handleUpdate(2, e.target.value)}
+                    autoComplete="off"
                 />
                 <TextField
                     sx={inputBoxStyle}
@@ -255,6 +257,7 @@ const RegisterVerifyEmailPage: FC = () => {
                     inputRef={digit3Ref}
                     value={digit3}
                     onChange={(e) => handleUpdate(3, e.target.value)}
+                    autoComplete="off"
                 />
                 <TextField
                     sx={inputBoxStyle}
@@ -262,6 +265,7 @@ const RegisterVerifyEmailPage: FC = () => {
                     inputRef={digit4Ref}
                     value={digit4}
                     onChange={(e) => handleUpdate(4, e.target.value)}
+                    autoComplete="off"
                 />
                 <TextField
                     sx={inputBoxStyle}
@@ -269,6 +273,7 @@ const RegisterVerifyEmailPage: FC = () => {
                     inputRef={digit5Ref}
                     value={digit5}
                     onChange={(e) => handleUpdate(5, e.target.value)}
+                    autoComplete="off"
                 />
                 <TextField
                     sx={inputBoxStyle}
@@ -276,6 +281,7 @@ const RegisterVerifyEmailPage: FC = () => {
                     inputRef={digit6Ref}
                     value={digit6}
                     onChange={(e) => handleUpdate(6, e.target.value)}
+                    autoComplete="off"
                 />
             </Box>
             <Button
