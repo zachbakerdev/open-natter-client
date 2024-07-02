@@ -3,6 +3,7 @@ import PageBoundingBox from "components/layout/PageBoundingBox";
 import ScreenBoundingBox from "components/layout/ScreenBoundingBox";
 import Sidebar from "components/navigation/Sidebar";
 import Error404 from "pages/Error404";
+import ForgotPasswordPage from "pages/ForgotPasswordPage";
 import LoginPage from "pages/LoginPage";
 import LoginVerifyEmailPage from "pages/LoginVerifyEmailPage";
 import RegisterPage from "pages/RegisterPage";
@@ -26,6 +27,10 @@ const App: FC = () => {
                             <Route
                                 path="verify"
                                 Component={LoginVerifyEmailPage}
+                            />
+                            <Route
+                                path="forgot-password"
+                                Component={ForgotPasswordPage}
                             />
                         </Route>
                         <Route path="register">

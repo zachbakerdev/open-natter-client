@@ -7,6 +7,7 @@ const strings = {
     register: "Register",
     rememberMe: "Remember me?",
     forgotPassword: "Forgot password?",
+    forgotPasswordTitle: "Forgot Password",
     noAccount: "Don't have an account? Register!",
     alreadyHaveAccount: "Already have an account? Log in!",
     usernameRequirements:
@@ -18,7 +19,11 @@ const strings = {
     verifyEmail: "Verification Code",
     submit: "Submit",
     resendEmail: "Resend Verification Email",
-    emailSent: "Email Sent."
+    emailSent: "Email Sent.",
+    send: "Send",
+    enterResetCode: "Enter Reset Code",
+    changePassword: "Change Password",
+    newPassword: "New Password"
 };
 
 export default strings;
