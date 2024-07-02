@@ -161,7 +161,7 @@ const RegisterPage: FC = () => {
                     label="Password"
                     type="password"
                     id="password"
-                    autoComplete="current-password"
+                    autoComplete="new-password"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     error={!isPasswordValid && password.length > 0}
