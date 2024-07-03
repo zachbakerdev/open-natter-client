@@ -1,5 +1,11 @@
 {
     "editor.formatOnSave": true,
+    "editor.defaultFormatter": "dbaeumer.vscode-eslint",
     "eslint.codeActionsOnSave.mode": "all",
-    "eslint.codeActionsOnSave.rules": []
+    "eslint.codeActionsOnSave.rules": [],
+    "editor.formatOnSaveMode": "file",
+    "editor.codeActionsOnSave": {
+        "source.organizeImports": "always"
+    },
+    "files.eol": "\n"
 }
