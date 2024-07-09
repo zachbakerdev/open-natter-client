@@ -1,5 +1,7 @@
-import HomeIcon from "@mui/icons-material/HomeRounded";
-import { Box, Paper } from "@mui/material";
+import AddIcon from "@mui/icons-material/Add";
+import ChatIcon from "@mui/icons-material/Chat";
+import { Paper } from "@mui/material";
+import IconWrapper from "components/icons/IconWrapper";
 import { FC } from "react";
 
 const Sidebar: FC = () => {
@@ -8,28 +10,11 @@ const Sidebar: FC = () => {
             variant="outlined"
             style={{
                 width: "80px",
-                height: "100vh",
-                padding: "15px",
-                alignItems: "center"
+                height: "100vh"
             }}
         >
-            <Box
-                display="flex"
-                alignItems="center"
-                alignContent="center"
-                width="50px"
-                height="50px"
-                style={{
-                    backgroundColor: "#303030",
-                    borderRadius: "10px"
-                }}
-            >
-                <HomeIcon
-                    style={{
-                        margin: "auto"
-                    }}
-                />
-            </Box>
+            <IconWrapper Icon={ChatIcon} backgroundColor="#303030" />
+            <IconWrapper Icon={AddIcon} backgroundColor="#303030" />
         </Paper>
     );
 };
